@@ -1,0 +1,106 @@
+!DOCTYPE html>
+
+<!--
+File: index.html
+GUI Assignment: HW5 Implementing a Bit of Scrabble with Drag-and-Drop
+Wesley Gallo,  UMass Lowell Computer Science, Wesley_Gallo@student.uml.edu
+
+Interactive Dynamic Table
+Copyright (c) 2022 by Gallo. All rights reserved. It may be freely copied or 
+excerpted for educational purposes with credit to the author.
+references: 
+https://developer.mozilla.org/en-US/docs/Web/JavaScript
+https://www.w3schools.com/
+https://www.digitalocean.com/community/tutorials/js-drag-and-drop-vanilla-js
+https://jquery.com/
+https://www.youtube.com/watch?v=jfYWwQrtzzY
+updated by WG on June 29, 2022, at 9:30 PM
+-->
+
+<html>
+<head>
+<title>HW5 Scrabble!</title>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+<!-- Linking CSS StyleSheet -->
+<link rel="stylesheet" href="css/style.css"> 
+</head>
+<body>
+        <h1>Single Row Scrabble!!!</h1>
+<!--Division of left panel-->
+<div class = "left-panel">
+
+<!--Directions and Rules for Simple one Line Scrabble-->
+    <h2>Directions and Rules: </h2>
+    <br> 
+<ul>
+    <h3>
+        <li> Using your letters, play a word on the board</li>
+        <li> Using the mouse drag the tile onto the blank tiles </li>
+        <li> Hit the "Submit Button" once your tiles are placed for score </li>
+        <li> Using the "Reset Button" button start the game at anytime </li>
+        <li> Place all tiles in a row</li>
+        <li> Score is based on number of lower right on tiles</li>
+        <li> Once a tile is placed, you cannot remove</li>
+        </h3>
+ </ul>
+ <br> <br>
+ <!--Reset Button to reset game on left-->
+    <button type = "button" id="buttonReset">Reset Button</button>
+</div>
+
+<div class = "container">
+        <br> <br>
+      <!--Games Total, Current Word Score, and Current word Score, and Remaining tiles -->
+       <div class = "fluid-container">
+           <h4> Current Score </h4>
+           <h5 id = curScore></h5>  
+           <h5> Current Word </h5><h5 id = currWord></h5><h5 id = exist></h5> 
+           <h5> Current Word Points<h5 id = crntword></h5> </h5> 
+           <h6> Remaining Number of tiles </h6> <h6 id = RemTiles>10</h6>
+       </div>
+       <br> <br>
+
+<!--Single row of scrabble board implemented with 7 blanks and 2 bonus tiles to use
+    Classes are used to determine what piece was dropped on the board and what bonus are applied through Javascript--->
+
+        <div class = "fluid-container" id="board" >
+                    <div id="board0" data-occupied="false" data-index="0"data-special="none"  class = "emptySpaceBoard" ondragover="onDragOver(event);" ondrop="onDrop(event);"></div>
+                    <div id="board1" data-occupied="false" data-index="1"data-special="none" class = "emptySpaceBoard"  ondragover="onDragOver(event);" ondrop="onDrop(event);"></div>
+                    <div id="board2" data-occupied="false" data-index="2" data-special="dl" class = "DoubleLetterSpace"  ondragover="onDragOver(event);" ondrop="onDrop(event);"></div>
+                    <div id="board3" data-occupied="false" data-index="3"data-special="none" class = "emptySpaceBoard"  ondragover="onDragOver(event);" ondrop="onDrop(event);"></div>
+                    <div id="board4" data-occupied="false" data-index="4"data-special="none" class = "emptySpaceBoard"  ondragover="onDragOver(event);" ondrop="onDrop(event);"></div>
+                    <div id="board5" data-occupied="false" data-index="5" data-special="dw" class = "DoubleWordSpace"  ondragover="onDragOver(event);" ondrop="onDrop(event);"></div>
+                    <div id="board6" data-occupied="false"data-index="6"data-special="none" class = "emptySpaceBoard"  ondragover="onDragOver(event);" ondrop="onDrop(event);"></div>
+                </div>
+                <br> <br>
+                <!--7 draggable tiles are generated below with ids for each tile and able to be dragged to the blank spaces above-->
+                <div class = "fluid-container" id="tiles">
+                    <div id="tile0" data-letter="" data-index="0" class = "LettersTL" draggable = "true" ondragstart="onDragStart(event);" ></div>
+                    <div id="tile1" data-letter="" data-index="1"class = "LettersTL" draggable = "true" ondragstart="onDragStart(event);"></div>
+                    <div id="tile2" data-letter="" data-index="2"class = "LettersTL" draggable = "true" ondragstart="onDragStart(event);"></div>
+                    <div id="tile3" data-letter="" data-index="3"class = "LettersTL" draggable = "true" ondragstart="onDragStart(event);"></div>
+                    <div id="tile4" data-letter="" data-index="4"class = "LettersTL" draggable = "true" ondragstart="onDragStart(event);"></div>
+                    <div id="tile5" data-letter="" data-index="5"class = "LettersTL" draggable = "true" ondragstart="onDragStart(event);"></div>
+                    <div id="tile6" data-letter="" data-index="6"class = "LettersTL" draggable = "true" ondragstart="onDragStart(event);"></div>
+                </div>
+                <br> <br>
+                <!-- Submit button below to enter letters once dragged to be scored -->
+                <button type = "button" onclick='wordSubmit()' id="SubmitButton">Submit Button</button>  
+            </div>
+        </div>
+<br> <br>
+
+<!-- Plugin Jquery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<!-- Linking External JavaScript File-->
+<script src="Javascript/Script.js"></script>
+
+</body>
+</html>

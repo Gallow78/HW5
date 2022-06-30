@@ -1,0 +1,153 @@
+/*
+File: style.css
+GUI Assignment: HW5 Implementing a Bit of Scrabble with Drag-and-Drop
+Wesley Gallo,  UMass Lowell Computer Science, Wesley_Gallo@student.uml.edu
+
+Scrabble
+Copyright (c) 2022 by Gallo. All rights reserved. It may be freely copied or 
+excerpted for educational purposes with credit to the author.
+references: 
+https://developer.mozilla.org/en-US/docs/Web/JavaScript
+https://www.w3schools.com/
+https://jquery.com/
+https://www.youtube.com/watch?v=jfYWwQrtzzY
+updated by WG on June 29, 2022, at 9:30 PM
+*/
+
+/*CSS Formating for fonts, buttons and backgrounds */
+
+h1 {
+    margin: auto;
+    background-color: darkred;
+    color: white;
+    text-align: center;
+    width: 50%;
+    border: 3px solid white;
+    padding: 20px;
+    }
+    
+    h2 {
+        text-align: center;
+    }
+    
+    h3{
+        font-size: 16px;
+    }
+    
+    h4{
+        color: green;
+    }
+    
+    #curScore {
+        color: White;
+        background-color: darkgreen;
+        width: 10%;
+        text-align: center;
+    }
+    
+    h6{
+        color: darkred;
+    }
+
+    #main {
+        color: blue;
+    }
+    .left-panel {
+        color: black;
+        background-color: #a1beed;
+        border: 3px solid white;
+        width: 20%;
+        float: left;
+    
+    }
+    
+    body {
+        background-image: linear-gradient(to right, rgb(3, 192, 250) , rgb(255, 234, 176));
+    }
+    
+    .container {
+        background-color: rgb(255, 236, 130);
+        color: royalblue;
+        float: right;
+        text-align: left;
+        padding-bottom: 5%;
+        min-width: 1500px ;
+    }
+
+
+    .LettersTL {
+        display: inline-block;
+        position: relative;
+        height: 165px; 
+        width: 175px; 
+        top: 3px;
+        left: 3px;
+        cursor: pointer;
+    }
+    
+    #SubmitButton {
+        width: 85%;
+        margin: auto;
+        background: #003303;
+        color:white;
+        font-size: 300%;
+        margin-top: 2%;
+        margin-bottom: 2%;
+        
+      }
+
+
+    #buttonReset {
+        width: 90%;
+        text-align: center;
+        margin: auto;
+        background: red;
+        color: white;
+        font-size: 250%;
+        margin: 3%;
+      }
+    
+    .emptySpaceBoard {
+        display: inline-block;
+        height: 175px;
+        width: 185px;
+        margin: 2px;
+        border: 3px black solid;
+        background-color: rgba(236, 236, 236, 0.884);
+    }
+
+
+    /*For the Double Word and Double Letter points I cut and copied from the images given. Then sized them to fit on the board */
+    
+
+
+    .DoubleWordSpace {
+        background-image: url("../graphics_data/DoubleTile.JPG");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-color: rgb(250, 114, 193);
+        display: inline-block;
+        height: 175px;
+        width: 185px;
+        margin: 3px;
+        border: 3px black solid;
+        background-color: pink;
+    }
+
+    .DoubleLetterSpace {
+        background-image: url("../graphics_data/DoubleLetter.JPG");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-color: lightskyblue;
+        display: inline-block;
+        height: 175px;
+        width: 185px;
+        margin: 3px;
+        border: 3px black solid;
+    }
+
+    
+
+    
+    
+    
